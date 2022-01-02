@@ -1,0 +1,16 @@
+create database employee;
+
+CREATE TABLE employee(
+	empcode VARCHAR(10) PRIMARY KEY,
+	ename VARCHAR(20) NOT NULL,
+    department ENUM('Accounts', 'Technology', 'Admin'),
+    gender VARCHAR(10),
+    dob DATE,
+    join_date DATE,
+    prev_exp INT,
+    salary INT,
+    address VARCHAR(50)
+);
+
+DESCRIBE TABLE employee;
+SELECT*TABLE employee;
