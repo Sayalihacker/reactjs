@@ -1,0 +1,44 @@
+# reactjs
+
+const express = require("express");
+const bodyParser = require('body-parser')
+const app = express();
+const cors = require('cors');
+const mysql = require('mysql');
+
+const db = mysql.createPool({
+  host: "localhost",
+    user: "root",
+    password: "Sayali22@2001",
+    database: "employee",
+});
+
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended : true}));
+
+
+
+app.post("/api/insert", (req, res) => {
+
+  const empcode = req.body.empcode;
+  const ename = req.body.ename;
+  const department = req.body.department;
+  const gender = req.body.gender;
+  const dob = req.body.dob;
+  const join_date = req.body.join_date;
+  const prev_exp = req.body.prev_exp;
+  const salary = req.body.salary;
+  const address = req.body.address;
+
+  const sqlInsert = "INSERT INTO EMPLOYEE(empcode, ename, department, gender, dob, join_date, prev_exp, salary, address) VALUES ?";
+  db.query(sqlInsert,[empcode, ename, department, gender, dob, join_date, prev_exp, salary, address ], (err, result) => {
+    console.log(result)
+  });
+});
+
+app.listen(3001, () => {
+    console.log("running on port 3001");
+});
+
+
